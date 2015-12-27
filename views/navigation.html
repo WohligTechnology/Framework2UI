@@ -4,11 +4,9 @@
   <span>Framework 2 UI</span>
 </div>
   </md-toolbar>
-  <md-menu-content>
-    <md-menu-item class="{{menu.classis}}" ng-repeat="menu in navigation">
-      <md-button ng-href="{{menu.link}}">
+  <md-list>
+    <md-list-item class="{{menu.classis}}" ng-repeat="menu in navigation" ng-href="{{menu.link}}">
         {{menu.name}}
-      </md-button>
-    </md-menu-item>
-  </md-menu-content>
+    </md-list-item>
+  </md-list>
 </div>
