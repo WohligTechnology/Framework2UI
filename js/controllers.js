@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   //Used to name the .html file
@@ -37,4 +37,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
     $(window).scrollTop(0);
   });
+  $scope.openLeftMenu = function() {
+    $mdSidenav('left').toggle();
+  };
 });

@@ -1,12 +1,20 @@
-<aside>
-  <div ng-include="template.aside" class="template aside"></div>
-</aside>
-<header>
-  <div ng-include="template.header" class="template header"></div>
-</header>
-<main>
-  <div ng-include="template.content" class="template content"></div>
-</main>
-<footer>
-  <div ng-include="template.footer" class="template footer"></div>
-</footer>
+<div layout="row">
+
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 333px')">
+    <div class="template aside" ng-include="template.aside"></div>
+  </md-sidenav>
+
+  <md-toolbar class="md-whiteframe-glow-z1">
+    <div class="template header" ng-include="template.header"></div>
+  </md-toolbar>
+
+  <md-content>
+    <main>
+      <div class="template content" ng-include="template.content"></div>
+    </main>
+    <footer>
+      <div class="template footer" ng-include="template.footer"></div>
+    </footer>
+  </md-content>
+
+</div>
