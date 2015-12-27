@@ -1,8 +1,6 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
-  //Used to name the .html file
-  $scope.template = TemplateService.changecontent("login");
   $scope.menutitle = NavigationService.makeactive("Login");
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();

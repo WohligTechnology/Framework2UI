@@ -1,13 +1,13 @@
 <div layout="row">
 
-  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 333px')">
+  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 333px')">
     <div class="template aside" ng-include="template.aside"></div>
   </md-sidenav>
 
-  <md-toolbar class="md-whiteframe-glow-z1">
-    <div class="template header" ng-include="template.header"></div>
+  <div layout="column" layout-fill>
+  <md-toolbar>
+    <div class="template header md-toolbar-tools" ng-include="template.header"></div>
   </md-toolbar>
-
   <md-content>
     <main>
       <div class="template content" ng-include="template.content"></div>
@@ -16,5 +16,6 @@
       <div class="template footer" ng-include="template.footer"></div>
     </footer>
   </md-content>
+</div>
 
 </div>
