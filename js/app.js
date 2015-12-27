@@ -13,22 +13,16 @@ firstapp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
     $stateProvider
 
-    .state('home', {
-        url: "/home",
-        templateUrl: "views/template.html",
-        controller: 'HomeCtrl'
-    })
-
     .state('login', {
         url: "/login",
         templateUrl: "views/template.html",
         controller: 'LoginCtrl'
     })
 
-    .state('team', {
-        url: "/team",
+    .state('users', {
+        url: "/users",
         templateUrl: "views/template.html",
-        controller: 'TeamCtrl'
+        controller: 'UsersCtrl'
     })
 
     .state('projects', {
@@ -37,13 +31,13 @@ firstapp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
         controller: 'ProjectsCtrl'
     })
 
-    .state('testcases', {
-        url: "/testcases",
+    .state('api', {
+        url: "/api",
         templateUrl: "views/template.html",
-        controller: 'TestCasesCtrl'
+        controller: 'APICtrl'
     })
 
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/users");
 
 });
 

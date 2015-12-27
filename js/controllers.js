@@ -1,12 +1,6 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'ngSanitize', 'angular-flexslider', 'ngMaterial'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'ngSanitize', 'ngMaterial'])
 
-.controller('HomeCtrl', function($scope, TemplateService, NavigationService, $timeout) {
-  //Used to name the .html file
-  $scope.template = TemplateService.changecontent("home");
-  $scope.menutitle = NavigationService.makeactive("Home");
-  TemplateService.title = $scope.menutitle;
-  $scope.navigation = NavigationService.getnav();
-})
+
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("login");
@@ -14,10 +8,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 })
-.controller('TeamCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('UsersCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   //Used to name the .html file
-  $scope.template = TemplateService.changecontent("team");
-  $scope.menutitle = NavigationService.makeactive("Team");
+  $scope.template = TemplateService.changecontent("users");
+  $scope.menutitle = NavigationService.makeactive("Users");
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 })
@@ -28,15 +22,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 })
-.controller('TestCasesCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('APICtrl', function($scope, TemplateService, NavigationService, $timeout) {
   //Used to name the .html file
-  $scope.template = TemplateService.changecontent("testcases");
-  $scope.menutitle = NavigationService.makeactive("Test Cases");
+  $scope.template = TemplateService.changecontent("api");
+  $scope.menutitle = NavigationService.makeactive("API");
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('headerctrl', function($scope, TemplateService) {
+.controller('HeaderCtrl', function($scope, TemplateService) {
   $scope.template = TemplateService;
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
     $(window).scrollTop(0);
