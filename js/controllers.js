@@ -35,7 +35,4 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
     $(window).scrollTop(0);
   });
-  $scope.openLeftMenu = function() {
-    $mdSidenav('left').toggle();
-  };
 });
