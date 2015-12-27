@@ -64,3 +64,21 @@ firstapp.directive('img', function($compile, $parse) {
         }
     };
 });
+
+
+var jsonEditorNo = 0;
+firstapp.directive('jsoneditor', function($compile, $parse) {
+  return {
+    restrict: 'EA',
+    link: function($scope, element, attrs) {
+      $element = $(element);
+      $element.css("min-height","200px");
+      var jsoneditornumber = (jsonEditorNo++);
+      $element.attr("id","jsonEditor"+jsoneditornumber);
+      var editor = ace.edit("jsonEditor"+jsoneditornumber);
+      editor.setTheme("ace/theme/monokai");
+      var JsonMode = ace.require("ace/mode/json").Mode;
+      editor.session.setMode(new JsonMode());
+    }
+  };
+});
