@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   $scope.menutitle = NavigationService.makeactive("Login");

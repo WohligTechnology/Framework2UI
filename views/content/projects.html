@@ -1,12 +1,33 @@
 <section class="md-whiteframe-z1 project">
-    <md-list>
-      <md-subheader class="md-no-sticky">All the projects are below</md-subheader>
-      <md-list-item role="listitem" class="md-with-secondary ng-scope md-clickable">
-        <button class="md-no-style md-button" type="button">
-          <div class="md-list-item-inner">
-            <p>Project Title</p>
-          </div>
-        </button>
-      </md-list-item>
-    </md-list>
+  <md-list>
+    <md-subheader class="md-no-sticky">All the projects are below</md-subheader>
+    <div class="md-list-item-inner">
+      <p>Project Title</p>
+      <ng-md-icon icon="check_circle" class="" size="20"></ng-md-icon>
+      <ng-md-icon icon="error" class="" size="20"></ng-md-icon>
+      <ng-md-icon icon="warning" class="" size="20"></ng-md-icon> 
+    </div>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-md>
+        <label>Project Name</label>
+        <input type="text">
+      </md-input-container>
+      <div flex="5" hide-xs hide-sm></div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Project Alias</label>
+        <input type="text">
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-md>
+        <label>URL</label>
+        <input type="text">
+      </md-input-container>
+      <div flex="5" hide-xs hide-sm></div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Status</label>
+        <input type="text">
+      </md-input-container>
+    </div>
+  </md-list>
 </section>
