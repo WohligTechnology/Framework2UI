@@ -7,11 +7,11 @@
         <span>Title</span>
       </h2>
       <span flex></span>
-      <md-button aria-label="Favorite" class="md-icon-button">
-        <md-icon></md-icon>
+      <md-button aria-label="Expand" class="md-icon-button">
+        <ng-md-icon icon="unfold_more" class="" size="20"></ng-md-icon>
       </md-button>
-      <md-button aria-label="More" class="md-icon-button">
-        <md-icon></md-icon>
+      <md-button aria-label="Delete" class="md-icon-button">
+        <ng-md-icon icon="delete" class="" size="20"></ng-md-icon>
       </md-button>
     </div>
     </md-toolbar>
@@ -43,9 +43,14 @@
         <md-input-container class="test md-block md-icon-right">
           <label>URL</label>
           <input ng-model="api.url">
-          <md-icon> tick</md-icon>
+          <ng-md-icon icon="check" class="" size="20"></ng-md-icon>
           <md-button class="md-raised">Test</md-button>
         </md-input-container>
+
+        <div class="testing-playground" layout-gt-sm="row">
+          <div jsoneditor class="" flex-gt-sm></div>
+          <div jsoneditor class="" flex-gt-sm></div>
+        </div>
 
         <md-input-container class="md-block">
           <label>Comment</label>
