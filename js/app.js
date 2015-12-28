@@ -32,7 +32,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     })
 
     .state('api', {
-        url: "/api",
+        url: "/api/:id",
         templateUrl: "views/template.html",
         controller: 'APICtrl'
     })

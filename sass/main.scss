@@ -23,4 +23,7 @@ nav li:hover .dropdown-menu {
 ng-md-icon {
     transition: all 1s;
 }
+.md-button .md-ripple-container {
+    z-index: 60;
+}
 /* Start writing sass here */

@@ -18,11 +18,49 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("projects");
   $scope.menutitle = NavigationService.makeactive("Projects");
+
+  function successCallback(data, status) {
+    if (status == 200) {
+      $scope.projects = data.data;
+      console.log(data);
+    } else {
+      errorCallback(status);
+    }
+  }
+
+  function errorCallback(err) {
+    console.log(err);
+  }
+
+
+  NavigationService.findProjects({}, successCallback, errorCallback);
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('APICtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('APICtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams) {
+
+  console.log($stateParams);
+
+  var data = {
+    "_id": $stateParams.id
+  };
+
+  function successCallback(data, status) {
+    if (status == 200) {
+      $scope.projects = data.data;
+      console.log(data);
+    } else {
+      errorCallback(status);
+    }
+  }
+
+  function errorCallback(err) {
+    console.log(err);
+  }
+
+  NavigationService.findOneProject(data,successCallback,errorCallback);
+
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("api");
   $scope.menutitle = NavigationService.makeactive("API");

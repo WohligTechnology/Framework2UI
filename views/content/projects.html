@@ -1,6 +1,8 @@
 <section class="md-whiteframe-z1 project">
+
   <md-list>
     <md-subheader class="md-no-sticky">All the projects are below</md-subheader>
+<<<<<<< Updated upstream
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
@@ -34,5 +36,39 @@
         </md-card-actions>
       </form>
     </md-content>
+=======
+    <div ng-repeat="project in projects">
+      <div class="md-list-item-inner">
+        <p>{{project.name}} ({{project.Api.length}})</p>
+
+        <ng-md-icon class="" ng-if="project.status==3" icon="check_circle" size="20"></ng-md-icon>
+        <ng-md-icon class="" ng-if="project.status==2" icon="error" size="20"></ng-md-icon>
+        <ng-md-icon class="" ng-if="project.status==1" icon="warning" size="20"></ng-md-icon>
+        <md-button class="md-raised">TEST</md-button>
+        <md-button class="md-raised" href="#/api/{{project._id}}">Open</md-button>
+      </div>
+      <div layout="row">
+        <md-input-container class="md-block" flex-gt-md>
+          <label>Project Name</label>
+          <input type="text" ng-model="project.name">
+        </md-input-container>
+        <div flex="5" hide-sm hide-xs></div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Project Alias</label>
+          <input type="text"  ng-model="project.alias">
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container class="md-block" flex-gt-md>
+          <label>URL</label>
+          <input type="text" ng-model="project.url">
+        </md-input-container>
+      </div>
+      <md-card-actions class="layout-align-center layout-row">
+        <md-button class="md-raised">SAVE - {{project._id}}</md-button>
+      </md-card-actions>
+    </div>
+>>>>>>> Stashed changes
   </md-list>
+
 </section>
