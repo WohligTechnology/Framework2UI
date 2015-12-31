@@ -1,8 +1,8 @@
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
 @import "../bower_components/font-awesome/css/font-awesome.min.css";
 @import "../bower_components/angular-material/angular-material.css";
-
 body {
+
 }
 img.loading {
   text-align: center;
@@ -21,16 +21,31 @@ nav li:hover .dropdown-menu {
   display: block;
 }
 ng-md-icon {
-    transition: all 1s;
+  transition: all 1s;
 }
 .md-button .md-ripple-container {
-    z-index: 60;
+  z-index: 60;
 }
 /* Start writing sass here */
-.md-button { z-index: 100; }
-.content { min-height: 500px; }
-.plus-icon { font-size: 24px; }
-.project { padding: 20px 50px;
-  .single-project { margin-bottom: 50px; }
+.md-button {
+  z-index: 100;
 }
-.project-detail { margin-top: 50px; }
+.content {
+  min-height: 500px;
+}
+.plus-icon {
+  font-size: 24px;
+}
+.project {
+
+  // padding: 20px 40px;
+  .single-project {
+    margin-bottom: 50px;
+  }
+}
+.project-detail {
+  margin-top: 50px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}

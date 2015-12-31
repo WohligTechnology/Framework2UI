@@ -1,51 +1,63 @@
-<section class="md-whiteframe-z1 project">
-
-  <md-list>
-    <md-subheader class="md-no-sticky">All the projects are below</md-subheader>
-
-    <div ng-repeat="project in projects" class="single-project">
-      <div class="md-list-item-inner">
-        <p>{{project.name}} ({{project.Api.length}})</p>
-
-        <ng-md-icon class="" ng-if="project.status==3" icon="check_circle" size="20"></ng-md-icon>
-        <ng-md-icon class="" ng-if="project.status==2" icon="error" size="20"></ng-md-icon>
-        <ng-md-icon class="" ng-if="project.status==1" icon="warning" size="20"></ng-md-icon>
-        <md-button class="md-raised" href="">TEST</md-button>
-        <md-button class="md-raised md-primary" href="#/api/{{project._id}}">Open</md-button>
+<section>
+  <div class="api-section md-whiteframe-z1 mb20" ng-repeat="project in projects" layout="column" layout-fill>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Project 1</span>
+        </h2>
+        <span flex></span>
+        <md-button aria-label="Expand" class="md-icon-button">
+          <ng-md-icon icon="unfold_more" class="" size="20"></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Delete" class="md-icon-button">
+          <ng-md-icon icon="delete" class="" size="20"></ng-md-icon>
+        </md-button>
       </div>
-      <form action="" name="projectForm">
-      <div layout="row" class="project-detail">
-        <md-input-container class="md-block" flex-gt-md>
-          <label>Project Name</label>
-          <input type="text" ng-model="project.name" name="name" required>
-          <div ng-messages="projectForm.name.$error">
-            <div ng-message="required">This is required.</div>
+    </md-toolbar>
+    <md-content flex layout-padding>
+      <div class="single-project">
+        <div class="md-list-item-inner">
+          <p>{{project.name}} ({{project.Api.length}})</p>
+          <ng-md-icon class="" ng-if="project.status==3" icon="check_circle" size="20"></ng-md-icon>
+          <ng-md-icon class="" ng-if="project.status==2" icon="error" size="20"></ng-md-icon>
+          <ng-md-icon class="" ng-if="project.status==1" icon="warning" size="20"></ng-md-icon>
+          <md-button class="md-raised" href="">TEST</md-button>
+          <md-button class="md-raised md-primary" href="#/api/{{project._id}}">Open</md-button>
+        </div>
+        <form action="" name="projectForm">
+          <div layout="row" class="project-detail">
+            <md-input-container class="md-block" flex-gt-md>
+              <label>Project Name</label>
+              <input type="text" ng-model="project.name" name="name" required>
+              <div ng-messages="projectForm.name.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-sm hide-xs></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Project Alias</label>
+              <input type="text" ng-model="project.alias" name="alias" required>
+              <div ng-messages="projectForm.alias.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
           </div>
-        </md-input-container>
-        <div flex="5" hide-sm hide-xs></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Project Alias</label>
-          <input type="text"  ng-model="project.alias" name="alias" required>
-          <div ng-messages="projectForm.alias.$error">
-            <div ng-message="required">This is required.</div>
+          <div layout="row">
+            <md-input-container class="md-block" flex-gt-md>
+              <label>URL</label>
+              <input type="text" ng-model="project.url" name="url" required>
+              <div ng-messages="projectForm.url.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
           </div>
-        </md-input-container>
+        </form>
+        <md-card-actions class="layout-align-center layout-row">
+          <md-button class="md-raised md-primary">SAVE - {{project._id}}</md-button>
+        </md-card-actions>
       </div>
-      <div layout="row">
-        <md-input-container class="md-block" flex-gt-md>
-          <label>URL</label>
-          <input type="text" ng-model="project.url" name="url" required>
-          <div ng-messages="projectForm.url.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      </form>
-      <md-card-actions class="layout-align-center layout-row">
-        <md-button class="md-raised md-primary">SAVE - {{project._id}}</md-button>
-      </md-card-actions>
-    </div>
-  </md-list>
+    </md-content>
+  </div>
   <md-button class="md-fab md-fab-bottom-right md-primary" aria-label="Add Projects">
     <md-icon class="fa fa-plus plus-icon"></md-icon>
   </md-button>
