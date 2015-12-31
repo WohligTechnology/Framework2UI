@@ -70,6 +70,7 @@ var jsonEditorNo = 0;
 firstapp.directive('jsoneditor', function($compile, $parse) {
   return {
     restrict: 'EA',
+    scope: false,
     link: function($scope, element, attrs) {
       $element = $(element);
       $element.css("min-height","200px");
@@ -79,6 +80,15 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
       editor.setTheme("ace/theme/monokai");
       var JsonMode = ace.require("ace/mode/json").Mode;
       editor.session.setMode(new JsonMode());
+      editor.setValue($scope.api.Response[attrs.model],1);
+      console.log($scope.api.Response);
+      editor.on("change",function(e) {
+        $scope.api.Response[attrs.model] = editor.getValue();
+        $scope.$apply();
+      });
+
+
+
     }
   };
 });
