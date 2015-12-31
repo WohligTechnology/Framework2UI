@@ -1,8 +1,8 @@
-var adminURL = "http://wohlig.io/";
+var adminURL = "http://192.168.0.111/";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function($http) {
-  var navigation = [ {
+  var navigation = [{
     name: "Users",
     classis: "active",
     link: "#/users",
@@ -28,14 +28,14 @@ var navigationservice = angular.module('navigationservice', [])
       }
       return menuname;
     },
-    saveProject: function(data,successCallback,errorCallback) {
+    saveProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/save", data).success(successCallback).error(errorCallback);
     },
-    findProjects: function(data,successCallback,errorCallback) {
-       $http.post(adminURL + "project/find", data).success(successCallback).error(errorCallback);
+    findProjects: function(data, successCallback, errorCallback) {
+      $http.post(adminURL + "project/find", data).success(successCallback).error(errorCallback);
     },
-    findOneProject: function(data,successCallback,errorCallback) {
+    findOneProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/findOne", data).success(successCallback).error(errorCallback);
-    },
-  }
+    }
+  };
 });

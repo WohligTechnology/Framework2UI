@@ -48,8 +48,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   function successCallback(data, status) {
     if (status == 200) {
-      $scope.projects = data.data;
-      console.log(data);
+      $scope.apis = data.data.Api;
+      $scope.api = data.data.Api[0];
+      $scope.api.Response = {request:'{"Android":"os"}',response:""};
+      console.log($scope.api);
     } else {
       errorCallback(status);
     }
@@ -59,7 +61,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     console.log(err);
   }
 
-  NavigationService.findOneProject(data,successCallback,errorCallback);
+  NavigationService.findOneProject(data, successCallback, errorCallback);
 
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("api");
