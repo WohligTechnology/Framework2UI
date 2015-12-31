@@ -12,21 +12,6 @@
         </md-button>
         <md-button aria-label="Delete" class="md-icon-button">
           <ng-md-icon icon="delete" class="" size="20"></ng-md-icon>
-=======
-
-  <div layout-fill layout="column">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>
-          <span ng-bind="api.name">Title</span>
-        </h2>
-        <span flex></span>
-        <md-button aria-label="Expand" class="md-icon-button">
-          <ng-md-icon class="" icon="unfold_more" size="20"></ng-md-icon>
-        </md-button>
-        <md-button aria-label="Delete" class="md-icon-button">
-          <ng-md-icon class="" icon="delete" size="20"></ng-md-icon>
->>>>>>> Stashed changes
         </md-button>
       </div>
     </md-toolbar>
@@ -35,14 +20,10 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Title</label>
-<<<<<<< Updated upstream
             <input required ng-model="api.title" name="title">
             <div ng-messages="userForm.title.$error">
               <div ng-message="required">This is required.</div>
             </div>
-=======
-            <input ng-model="api.name">
->>>>>>> Stashed changes
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
             <label>Type</label>
@@ -64,16 +45,10 @@
         </div>
         <md-input-container class="md-block">
           <label>URL</label>
-<<<<<<< Updated upstream
           <input required name="url" ng-model="api.url">
           <div ng-messages="userForm.url.$error">
             <div ng-message="required">This is required.</div>
           </div>
-=======
-          <input ng-model="api.url">
-          <ng-md-icon class="" icon="check" size="20"></ng-md-icon>
-          <md-button class="md-raised">Test</md-button>
->>>>>>> Stashed changes
         </md-input-container>
         <ng-md-icon icon="check" class="" size="20"></ng-md-icon>
         <md-button class="md-raised md-primary">Test</md-button>
