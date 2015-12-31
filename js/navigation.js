@@ -31,11 +31,21 @@ var navigationservice = angular.module('navigationservice', [])
     saveProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/save", data).success(successCallback).error(errorCallback);
     },
+    deleteProject: function(data, successCallback, errorCallback) {
+      $http.post(adminURL + "project/delete", data).success(successCallback).error(errorCallback);
+    },
     findProjects: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/find", data).success(successCallback).error(errorCallback);
     },
     findOneProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/findOne", data).success(successCallback).error(errorCallback);
-    }
+    },
+    saveApi: function(data, successCallback, errorCallback) {
+      $http.post(adminURL + "api/save", data).success(successCallback).error(errorCallback);
+    },
+    deleteApi: function(data, successCallback, errorCallback) {
+      $http.post(adminURL + "api/delete", data).success(successCallback).error(errorCallback);
+    },
+
   };
 });

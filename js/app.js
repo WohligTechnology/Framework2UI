@@ -35,7 +35,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
         url: "/api/:id",
         templateUrl: "views/template.html",
         controller: 'APICtrl'
-    })
+    });
 
     $urlRouterProvider.otherwise("/users");
 
