@@ -49,12 +49,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
   };
 
+  $scope.expandProject = function(project) {
+    if (!project.expand) {
+      _.each($scope.projects, function(n) {
+        n.expand = false;
+      });
+    }
+    project.expand = !project.expand;
+  };
+
   function errorCallback(err) {
     console.log(err);
   }
 
   $scope.createProject = function() {
-    $scope.projects.push({});
+    $scope.expandProject({});
+    $scope.projects.push({
+      expand: true
+    });
   };
 
   NavigationService.findProjects({}, successCallback, errorCallback);

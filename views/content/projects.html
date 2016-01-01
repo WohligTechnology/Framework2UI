@@ -3,19 +3,22 @@
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
-          <span>{{project.name}}
-            ({{project.Api.length}})</span>
+          <span>{{project.name}} <span ng-if="project.Api.length">({{project.Api.length}})</span>
+            </span>
         </h2>
         <span flex></span>
-        <md-button aria-label="Expand" class="md-icon-button">
+        <md-button aria-label="Expand" ng-click="expandProject(project)" class="md-icon-button">
           <ng-md-icon class="" icon="unfold_more" size="20" style="fill:white;"></ng-md-icon>
         </md-button>
-        <md-button aria-label="Delete" class="md-icon-button" ng-if="project._id" ng-click="deleteProject(project);">
+        <md-button aria-label="Delete" class="md-icon-button" ng-click="deleteProject(project);" ng-if="project._id">
           <ng-md-icon class="" icon="delete" size="20" style="fill:white;"></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Save" class="md-icon-button" ng-click="saveProject(project);" ng-if="!project._id">
+          <ng-md-icon class="" icon="save" size="20" style="fill:white;"></ng-md-icon>
         </md-button>
       </div>
     </md-toolbar>
-    <md-content flex layout-padding>
+    <md-content flex layout-padding class="openClose" ng-class="{'closeSection' : !project.expand , 'openSection' : project.expand}">
       <div class="single-project">
         <div class="md-list-item-inner">
           <ng-md-icon class="" icon="check_circle" ng-if="project.status==3" size="20"></ng-md-icon>

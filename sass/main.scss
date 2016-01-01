@@ -49,3 +49,13 @@ ng-md-icon {
 .mb20 {
   margin-bottom: 20px;
 }
+.openClose {
+  padding:0px;
+  @include transition(all 0.40s ease-in-out);
+  &.closeSection {
+    height:0px;
+  }
+  &.openSection {
+    height:350px;
+  }
+}
