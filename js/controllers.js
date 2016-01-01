@@ -28,10 +28,34 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
   }
 
+
+  $scope.saveProject = function(project) {
+    console.log(project);
+    NavigationService.saveProject(project, function(data) {
+      project._id = data.data._id;
+      console.log(data);
+    }, function() {
+      console.log(data);
+    });
+  };
+  $scope.deleteProject = function(project) {
+    NavigationService.deleteProject(project, function(data) {
+      _.remove($scope.projects, function(n) {
+        return n._id == project._id;
+      });
+      console.log("Project Deleted");
+    }, function() {
+      console.log("Delete Project ERROR");
+    });
+  };
+
   function errorCallback(err) {
     console.log(err);
   }
 
+  $scope.createProject = function() {
+    $scope.projects.push({});
+  };
 
   NavigationService.findProjects({}, successCallback, errorCallback);
   TemplateService.title = $scope.menutitle;
@@ -48,10 +72,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   function successCallback(data, status) {
     if (status == 200) {
+      $scope.menutitle = data.data.name + " - API";
+      TemplateService.title = $scope.menutitle;
+      console.log($scope.menutitle);
       $scope.apis = data.data.Api;
-      $scope.api = data.data.Api[0];
-      $scope.api.Response = {request:'{"Android":"os"}',response:""};
-      console.log($scope.api);
     } else {
       errorCallback(status);
     }
