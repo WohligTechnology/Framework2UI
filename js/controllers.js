@@ -110,13 +110,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   NavigationService.findOneProject(data, successCallback, errorCallback);
 
+  $scope.expandApi = function(api) {
+    if (!api.expand) {
+      _.each($scope.apis, function(n) {
+        n.expand = false;
+      });
+    }
+    api.expand = !api.expand;
+  };
+
   $scope.createApi = function() {
     $scope.apis.push({
       Response: {
         request: "",
         response: ""
       },
-      project: $scope.project._id
+      project: $scope.project._id,
+      expand: true
     });
   };
   $scope.saveApi = function(api) {
@@ -125,6 +135,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       console.log(data);
     }, function(err) {
       console.log("ERROR");
+    });
+  };
+  $scope.deleteApi = function(api) {
+    NavigationService.deleteApi(api, function(data) {
+      _.remove($scope.apis, function(n) {
+        return api._id == n._id;
+      });
+      console.log("DELETEd ");
+    }, function(err) {
+      console.log("ERROR DELETING");
     });
   };
 
