@@ -7,6 +7,13 @@
             </span>
         </h2>
         <span flex></span>
+        <div class="md-list-item-inner">
+          <ng-md-icon class="" icon="check_circle" ng-if="project.status==3" size="20"></ng-md-icon>
+          <ng-md-icon class="" icon="error" ng-if="project.status==2" size="20"></ng-md-icon>
+          <ng-md-icon class="" icon="warning" ng-if="project.status==1" size="20"></ng-md-icon>
+          <md-button class="md-raised" href="">TEST</md-button>
+          <md-button class="md-raised" href="#/api/{{project._id}}">Open</md-button>
+        </div>
         <md-button aria-label="Expand" ng-click="expandProject(project)" class="md-icon-button">
           <ng-md-icon class="" icon="unfold_more" size="20" style="fill:white;"></ng-md-icon>
         </md-button>
@@ -20,13 +27,7 @@
     </md-toolbar>
     <md-content flex layout-padding class="openClose" ng-class="{'closeSection' : !project.expand , 'openSection' : project.expand}">
       <div class="single-project">
-        <div class="md-list-item-inner">
-          <ng-md-icon class="" icon="check_circle" ng-if="project.status==3" size="20"></ng-md-icon>
-          <ng-md-icon class="" icon="error" ng-if="project.status==2" size="20"></ng-md-icon>
-          <ng-md-icon class="" icon="warning" ng-if="project.status==1" size="20"></ng-md-icon>
-          <md-button class="md-raised" href="">TEST</md-button>
-          <md-button class="md-raised md-primary" href="#/api/{{project._id}}">Open</md-button>
-        </div>
+
         <form action="" name="projectForm">
           <div class="project-detail" layout="row">
             <md-input-container class="md-block" flex-gt-md>
@@ -61,7 +62,8 @@
       </div>
     </md-content>
   </div>
-  <md-button aria-label="Add Projects" class="md-fab md-fab-bottom-right md-primary" ng-click="createProject()">
-    <ng-md-icon icon="add" size="36" style="fill: white;line-height:80px;"></ng-md-icon>
-  </md-button>
+
 </section>
+<md-button aria-label="Add Projects" class="md-fab md-fab-bottom-right md-primary fixed" ng-click="createProject()">
+  <ng-md-icon icon="add" size="36" style="fill: white;line-height:80px;"></ng-md-icon>
+</md-button>
