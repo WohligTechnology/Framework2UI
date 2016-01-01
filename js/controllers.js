@@ -76,6 +76,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('APICtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams) {
 
+
   console.log($stateParams);
 
   var data = {
@@ -87,7 +88,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.menutitle = data.data.name + " - API";
       TemplateService.title = $scope.menutitle;
       console.log($scope.menutitle);
+      console.log(data.data.Api);
+      $scope.project = data.data;
+
       $scope.apis = data.data.Api;
+      _.each($scope.apis, function(n) {
+        n.project = $scope.project._id;
+      });
+      if (_.isEmpty(data.data.Api)) {
+        $scope.createApi();
+      }
+
     } else {
       errorCallback(status);
     }
@@ -98,6 +109,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   }
 
   NavigationService.findOneProject(data, successCallback, errorCallback);
+
+  $scope.createApi = function() {
+    $scope.apis.push({
+      Response: {
+        request: "",
+        response: ""
+      },
+      project: $scope.project._id
+    });
+  };
+  $scope.saveApi = function(api) {
+    NavigationService.saveApi(api, function(data) {
+      api._id = data.data._id;
+      console.log(data);
+    }, function(err) {
+      console.log("ERROR");
+    });
+  };
 
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("api");

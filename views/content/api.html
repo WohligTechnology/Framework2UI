@@ -1,16 +1,16 @@
- <div class="api-section md-whiteframe-z1 mb20" ng-repeat="api in apis">
-  <div layout="column" layout-fill>
+<div class="api-section md-whiteframe-z1 mb20" ng-repeat="api in apis">
+  <div layout-fill layout="column">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
-          <span>Title</span>
+          <span ng-bind="api.name">Title</span>
         </h2>
         <span flex></span>
         <md-button aria-label="Expand" class="md-icon-button">
-          <ng-md-icon icon="unfold_more" class="" size="20"></ng-md-icon>
+          <ng-md-icon class="" icon="unfold_more" size="20" style="fill:white;"></ng-md-icon>
         </md-button>
         <md-button aria-label="Delete" class="md-icon-button">
-          <ng-md-icon icon="delete" class="" size="20"></ng-md-icon>
+          <ng-md-icon class="" icon="delete" size="20" style="fill:white;"></ng-md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -18,8 +18,8 @@
       <form name="userForm">
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Title</label>
-            <input required ng-model="api.title" name="title">
+            <label>Name</label>
+            <input name="title" ng-model="api.name" required>
             <div ng-messages="userForm.title.$error">
               <div ng-message="required">This is required.</div>
             </div>
@@ -43,18 +43,19 @@
           </md-input-container>
         </div>
         <md-input-container class="md-block">
-          <label>URL</label>
-          <input required name="url" ng-model="api.url">
+          <label>URL -
+            {{project.url+"/"}}{{api.url}}</label>
+          <input name="url" ng-model="api.url" required>
           <div ng-messages="userForm.url.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
-        <ng-md-icon icon="check" class="" size="20"></ng-md-icon>
+        <ng-md-icon class="" icon="check" size="20"></ng-md-icon>
         <md-button class="md-raised md-primary">Test</md-button>
 
         <div class="testing-playground" layout-gt-sm="row">
-          <div ng-if="api.Response" class="" flex-gt-sm jsoneditor model="request"></div>
-          <div ng-if="api.Response" class="" flex-gt-sm jsoneditor model="response"></div>
+          <div class="" flex-gt-sm jsoneditor model="request" ng-if="api.Response"></div>
+          <div class="" flex-gt-sm jsoneditor model="response" ng-if="api.Response"></div>
         </div>
 
         <md-input-container class="md-block">
@@ -62,9 +63,13 @@
           <textarea columns="1" md-maxlength="150" ng-model="api.comment" rows="5"></textarea>
         </md-input-container>
 
-        <md-button class="md-raised">Save</md-button>
+        <md-button class="md-raised" ng-click="saveApi(api)">Save</md-button>
       </form>
     </md-content>
   </div>
 
 </div>
+
+<md-button aria-label="Add Projects" class="md-fab md-fab-bottom-right md-primary fixed" ng-click="createApi()">
+  <ng-md-icon icon="add" size="36" style="fill: white;line-height:80px;"></ng-md-icon>
+</md-button>
