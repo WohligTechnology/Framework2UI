@@ -81,7 +81,6 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
       var JsonMode = ace.require("ace/mode/json").Mode;
       editor.session.setMode(new JsonMode());
       editor.setValue($scope.api.Response[attrs.model],1);
-      console.log($scope.api.Response);
       editor.on("change",function(e) {
         $scope.api.Response[attrs.model] = editor.getValue();
         $scope.$apply();

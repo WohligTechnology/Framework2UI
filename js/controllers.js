@@ -14,7 +14,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ProjectsCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('ProjectsCtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout) {
+
+  function showToast(text) {
+    $mdToast.show(
+      $mdToast.simple()
+      .textContent(text)
+      .position("bottom left")
+      .hideDelay(3000)
+    );
+  }
+
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("projects");
   $scope.menutitle = NavigationService.makeactive("Projects");
@@ -22,31 +32,42 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   function successCallback(data, status) {
     if (status == 200) {
       $scope.projects = data.data;
-      console.log(data);
+      if (_.isEmpty(data.data)) {
+        $scope.createProject();
+      }
     } else {
       errorCallback(status);
     }
   }
 
-
   $scope.saveProject = function(project) {
-    console.log(project);
     NavigationService.saveProject(project, function(data) {
       project._id = data.data._id;
-      console.log(data);
+      showToast("Project Saved Successfully");
     }, function() {
-      console.log(data);
+      showToast("Error saving the Project");
     });
   };
   $scope.deleteProject = function(project) {
-    NavigationService.deleteProject(project, function(data) {
-      _.remove($scope.projects, function(n) {
-        return n._id == project._id;
+    var confirm = $mdDialog.confirm()
+      .title('Would you like to delete your Project?')
+      .textContent('The data for the Project will also be deleted')
+      .ok('Confirm')
+      .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+      NavigationService.deleteProject(project, function(data) {
+        _.remove($scope.projects, function(n) {
+          return n._id == project._id;
+        });
+        showToast("Project Deleted Successfully");
+      }, function() {
+        showToast("Error Deleting Project");
       });
-      console.log("Project Deleted");
+
     }, function() {
-      console.log("Delete Project ERROR");
+
     });
+
   };
 
   $scope.expandProject = function(project) {
@@ -59,13 +80,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   };
 
   function errorCallback(err) {
-    console.log(err);
   }
 
   $scope.createProject = function() {
-    $scope.expandProject({});
     $scope.projects.push({
-      expand: true
+      expand: true,
+      name:"",
+      alias:"",
+      url:""
     });
   };
 
@@ -74,10 +96,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('APICtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams) {
+.controller('APICtrl', function($scope, $mdDialog,$mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
 
+  function showToast(text) {
+    $mdToast.show(
+      $mdToast.simple()
+      .textContent(text)
+      .position("bottom left")
+      .hideDelay(3000)
+    );
+  }
 
-  console.log($stateParams);
 
   var data = {
     "_id": $stateParams.id
@@ -87,8 +116,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     if (status == 200) {
       $scope.menutitle = data.data.name + " - API";
       TemplateService.title = $scope.menutitle;
-      console.log($scope.menutitle);
-      console.log(data.data.Api);
       $scope.project = data.data;
 
       $scope.apis = data.data.Api;
@@ -105,7 +132,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   }
 
   function errorCallback(err) {
-    console.log(err);
   }
 
   NavigationService.findOneProject(data, successCallback, errorCallback);
@@ -132,20 +158,35 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.saveApi = function(api) {
     NavigationService.saveApi(api, function(data) {
       api._id = data.data._id;
-      console.log(data);
+      showToast("API saved Successfully");
     }, function(err) {
-      console.log("ERROR");
+      showToast("Error saving API");
     });
   };
   $scope.deleteApi = function(api) {
-    NavigationService.deleteApi(api, function(data) {
-      _.remove($scope.apis, function(n) {
-        return api._id == n._id;
+
+    var confirm = $mdDialog.confirm()
+      .title('Would you like to delete the API?')
+      .textContent('The data for the API will also be deleted')
+      .ok('Confirm')
+      .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+
+      NavigationService.deleteApi(api, function(data) {
+        _.remove($scope.apis, function(n) {
+          return api._id == n._id;
+        });
+        showToast("API Deleted Successfully");
+      }, function(err) {
+        showToast("Error Deleting API");
       });
-      console.log("DELETEd ");
-    }, function(err) {
-      console.log("ERROR DELETING");
+
+    }, function() {
+
     });
+
+
+
   };
 
   //Used to name the .html file
