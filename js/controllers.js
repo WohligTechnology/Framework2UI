@@ -20,6 +20,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.searchForm = {
     name: ""
   };
+  
 
   $scope.makeSearch = function(val) {
     $scope.searchForm.name = val;
