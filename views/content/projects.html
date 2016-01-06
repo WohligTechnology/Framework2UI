@@ -41,7 +41,7 @@
             </md-input-container>
             <div flex="5" hide-sm hide-xs></div>
             <md-input-container class="md-block" flex-gt-sm>
-              <label>Project Alias</label>
+              <label>Project Alias - {{'http://wohlig.io/callApi/'+project.alias}}</label>
               <input name="alias" ng-model="project.alias" required type="text">
               <div ng-messages="projectForm.alias.$error">
                 <div ng-message="required">Alias is required.</div>
