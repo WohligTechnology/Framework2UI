@@ -1,6 +1,6 @@
 <div  ui-sortable="sortableOptions" ng-model="apis">
 
-  <div class="api-section md-whiteframe-z1 mb20" ng-repeat="api in apis">
+  <div class="api-section md-whiteframe-z1 mb20" ng-repeat="api in apis|filter:searchForm">
 
     <div layout-fill layout="column">
       <md-toolbar>

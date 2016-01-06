@@ -98,6 +98,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('APICtrl', function($scope, $mdDialog,$mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
 
+  $scope.isSearch = true;
+  $scope.searchForm = {name:""};
   function showToast(text) {
     $mdToast.show(
       $mdToast.simple()
