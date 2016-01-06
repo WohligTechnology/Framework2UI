@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons','ui.sortable'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   $scope.menutitle = NavigationService.makeactive("Login");
@@ -79,15 +79,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     project.expand = !project.expand;
   };
 
-  function errorCallback(err) {
-  }
+  function errorCallback(err) {}
 
   $scope.createProject = function() {
     $scope.projects.push({
       expand: true,
-      name:"",
-      alias:"",
-      url:""
+      name: "",
+      alias: "",
+      url: ""
     });
   };
 
@@ -96,10 +95,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('APICtrl', function($scope, $mdDialog,$mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
+.controller('APICtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
 
   $scope.isSearch = true;
-  $scope.searchForm = {name:""};
+  $scope.searchForm = {
+    name: ""
+  };
+
   function showToast(text) {
     $mdToast.show(
       $mdToast.simple()
@@ -114,17 +116,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
       setTimeout(function() {
         var newOrder = _.cloneDeep($scope.apis);
-        newOrder  = _.pluck($scope.apis,"_id");
-        console.log(_.pluck($scope.apis,"name"));
+        newOrder = _.pluck($scope.apis, "_id");
+        console.log(_.pluck($scope.apis, "name"));
         console.log(newOrder);
         var newProject = _.cloneDeep($scope.project);
         newProject.Api = newOrder;
-        NavigationService.saveProject(newProject,function(){
+        NavigationService.saveProject(newProject, function() {
           showToast("API Ordered");
-        },function() {
+        }, function() {
           showToast("Error Ordering API");
         });
-      },100);
+      }, 100);
 
 
 
@@ -156,8 +158,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
   }
 
-  function errorCallback(err) {
-  }
+  function errorCallback(err) {}
 
   NavigationService.findOneProject(data, successCallback, errorCallback);
 
@@ -171,7 +172,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   };
 
   $scope.createApi = function() {
+    console.log("Create API");
+    _.each($scope.apis, function(n) {
+      n.expand = false;
+    });
     $scope.apis.push({
+      name:"",
       Response: {
         request: "",
         response: ""
@@ -180,13 +186,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       expand: true
     });
   };
-  $scope.copyApi = function(api,index) {
-    console.log(api);
-    console.log(index);
-    var newApi  = _.cloneDeep(api);
+  $scope.copyApi = function(api, index) {
+    var newApi = _.cloneDeep(api);
     delete newApi._id;
     delete newApi.$$hashKey;
-    $scope.apis.splice(index+1, 0, newApi);
+    $scope.apis.splice(index + 1, 0, newApi);
     $scope.expandApi(newApi);
   };
   $scope.saveApi = function(api) {
