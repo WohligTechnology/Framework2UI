@@ -16,6 +16,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('ProjectsCtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout) {
 
+  $scope.isSearch = true;
+  $scope.searchForm = {
+    name: ""
+  };
+
+  $scope.makeSearch = function(val) {
+    $scope.searchForm.name = val;
+  };
+
   function showToast(text) {
     $mdToast.show(
       $mdToast.simple()
@@ -102,6 +111,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     name: ""
   };
 
+  $scope.makeSearch = function(val) {
+    $scope.searchForm.name = val;
+  };
+
   function showToast(text) {
     $mdToast.show(
       $mdToast.simple()
@@ -117,8 +130,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       setTimeout(function() {
         var newOrder = _.cloneDeep($scope.apis);
         newOrder = _.pluck($scope.apis, "_id");
-        console.log(_.pluck($scope.apis, "name"));
-        console.log(newOrder);
         var newProject = _.cloneDeep($scope.project);
         newProject.Api = newOrder;
         NavigationService.saveProject(newProject, function() {
@@ -172,12 +183,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   };
 
   $scope.createApi = function() {
-    console.log("Create API");
     _.each($scope.apis, function(n) {
       n.expand = false;
     });
     $scope.apis.push({
-      name:"",
+      name: "",
       Response: {
         request: "",
         response: ""

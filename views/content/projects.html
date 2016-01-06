@@ -1,5 +1,5 @@
-<section ui-sortable ng-model="projects">
-  <div class="api-section md-whiteframe-z1 mb20" layout-fill layout="column"  ng-repeat="project in projects">
+<section>
+  <div class="api-section md-whiteframe-z1 mb20" layout-fill layout="column"  ng-repeat="project in projects|filter:searchForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
