@@ -30,7 +30,8 @@
     "ace-builds": "https://github.com/ajaxorg/ace-builds.git#~1.2.2",
     "angular-material-icons": "https://github.com/klarsys/angular-material-icons.git#~0.6.0",
     "svg-morpheus": "https://github.com/alexk111/SVG-Morpheus.git#~0.1.8",
-    "angular-ui-sortable": "~0.13.4"
+    "angular-ui-sortable": "~0.13.4",
+    "angular-clipboard": "~1.2.1"
   },
   "resolutions": {
     "angular": "1.4.8"

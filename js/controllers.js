@@ -1,4 +1,6 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable'])
+var mockURL = "http://wohlig.io/callApi/";
+
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable','angular-clipboard'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   $scope.menutitle = NavigationService.makeactive("Login");
@@ -14,13 +16,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ProjectsCtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout) {
+.controller('ProjectsCtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout,clipboard) {
 
   $scope.isSearch = true;
   $scope.searchForm = {
     name: ""
   };
-  
+  $scope.mockURL = mockURL;
 
   $scope.makeSearch = function(val) {
     $scope.searchForm.name = val;
@@ -38,6 +40,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("projects");
   $scope.menutitle = NavigationService.makeactive("Projects");
+
+
+  $scope.copyMockUrl=function(project) {
+    clipboard.copyText(mockURL+project.alias);
+  };
+  $scope.copyLiveUrl=function(project) {
+    clipboard.copyText(project.url);
+  };
 
   function successCallback(data, status) {
     if (status == 200) {
