@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons','ui.sortable'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
   $scope.menutitle = NavigationService.makeactive("Login");
@@ -107,6 +107,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     );
   }
 
+  $scope.sortableOptions = {
+    update: function(e, ui) {
+
+      setTimeout(function() {
+        var newOrder = _.cloneDeep($scope.apis);
+        newOrder  = _.pluck($scope.apis,"_id");
+        console.log(_.pluck($scope.apis,"name"));
+        console.log(newOrder);
+        var newProject = _.cloneDeep($scope.project);
+        newProject.Api = newOrder;
+        NavigationService.saveProject(newProject,function(){
+          showToast("API Ordered");
+        },function() {
+          showToast("Error Ordering API");
+        });
+      },100);
+
+
+
+
+    },
+    axis: 'y'
+  };
 
   var data = {
     "_id": $stateParams.id
@@ -154,6 +177,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       project: $scope.project._id,
       expand: true
     });
+  };
+  $scope.copyApi = function(api,index) {
+    console.log(api);
+    console.log(index);
+    var newApi  = _.cloneDeep(api);
+    delete newApi._id;
+    delete newApi.$$hashKey;
+    $scope.apis.splice(index+1, 0, newApi);
+    $scope.expandApi(newApi);
   };
   $scope.saveApi = function(api) {
     NavigationService.saveApi(api, function(data) {
