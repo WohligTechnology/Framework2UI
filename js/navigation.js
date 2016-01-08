@@ -1,4 +1,4 @@
-var adminURL = "http://wohlig.io/";
+var adminURL = "http://wohlig.io:81/";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function($http) {
