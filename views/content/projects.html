@@ -1,7 +1,5 @@
-
-
 <section>
-  <div class="api-section md-whiteframe-z1 mb20" layout-fill layout="column"  ng-repeat="project in projects|filter:searchForm.name">
+  <div class="api-section md-whiteframe-z1 mb20" layout-fill layout="column"  ng-repeat="project in projects|filter:searchForm.name|orderBy:'name'">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>
@@ -27,9 +25,8 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-content flex layout-padding class="openClose" ng-class="{'closeSection' : !project.expand , 'openSection' : project.expand}">
+    <md-content flex layout-padding ng-if="project.expand" >
       <div class="single-project">
-
         <form  name="projectForm">
           <div class="project-detail" layout="row">
             <md-input-container class="md-block" flex-gt-md>

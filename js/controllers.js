@@ -118,6 +118,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('APICtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
 
+  var isSortable = false;
+
   $scope.isSearch = true;
   $scope.searchForm = {
     name: ""
@@ -152,7 +154,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       }, 100);
 
     },
-    axis: 'y'
+    axis: 'y',
+    disabled : isSortable
   };
 
   var data = {
@@ -184,9 +187,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   $scope.expandApi = function(api) {
     if (!api.expand) {
+      $scope.sortableOptions.disabled = true;
       _.each($scope.apis, function(n) {
         n.expand = false;
       });
+
+    }
+    else {
+      $scope.sortableOptions.disabled = false;
     }
     api.expand = !api.expand;
   };
