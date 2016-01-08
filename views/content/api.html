@@ -25,7 +25,7 @@
           </md-button>
         </div>
       </md-toolbar>
-      <md-content class="openCloseAPI" flex layout-padding ng-class="{'closeSection' : !api.expand , 'openSection' : api.expand}">
+      <md-content ng-if="api.expand" flex layout-padding>
         <form name="userForm">
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>

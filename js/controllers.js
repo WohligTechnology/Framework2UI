@@ -1,4 +1,5 @@
-var mockURL = "http://wohlig.io/callApi/";
+var adminURL = "http://wohlig.io:81/";
+var mockURL = adminURL+"/callApi/";
 
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable','angular-clipboard'])
 
@@ -149,9 +150,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
           showToast("Error Ordering API");
         });
       }, 100);
-
-
-
 
     },
     axis: 'y'
