@@ -1,21 +1,21 @@
 var jsArray = [
-    './bower_components/jquery/dist/jquery.min.js',
-    './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './bower_components/flexslider/jquery.flexslider-min.js',
-    './bower_components/angular/angular.min.js',
-    './bower_components/angular-sanitize/angular-sanitize.min.js',
-    './bower_components/angular-animate/angular-animate.min.js',
-    './bower_components/angular-bootstrap/ui-bootstrap.min.js',
-    './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-    './bower_components/ui-router/release/angular-ui-router.min.js',
-    './bower_components/angular-flexslider/angular-flexslider.js',
-    './js/app.js',
-    './js/controllers.js',
-    './js/templateservice.js',
-    './js/navigation.js',
+  './bower_components/jquery/dist/jquery.min.js',
+  './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+  './bower_components/flexslider/jquery.flexslider-min.js',
+  './bower_components/angular/angular.min.js',
+  './bower_components/angular-sanitize/angular-sanitize.min.js',
+  './bower_components/angular-animate/angular-animate.min.js',
+  './bower_components/angular-bootstrap/ui-bootstrap.min.js',
+  './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  './bower_components/ui-router/release/angular-ui-router.min.js',
+  './bower_components/angular-flexslider/angular-flexslider.js',
+  './js/app.js',
+  './js/controllers.js',
+  './js/templateservice.js',
+  './js/navigation.js',
 
-    //please do not change it
-    './w/js/templates.js',
+  //please do not change it
+  './w/js/templates.js',
 ];
 var replacehostFrom = "http://localhost/demo/";
 var replacehostTo = "http://wohlig.co.in/demo2/";
@@ -275,11 +275,12 @@ gulp.task('connect:js', function() {
 gulp.task('watch:all', function() {
   connect.server({
     root: './',
-    livereload: true
+    livereload: true,
+    port: 82,
   });
   gulp.src(__filename)
     .pipe(open({
-      uri: 'http://localhost:8080'
+      uri: 'http://localhost:82'
     }));
   gulp.watch(['./**/*.html', './sass/*.scss', './js/*.js'], ['sass:development', 'connect:html', 'connect:js']);
 });
