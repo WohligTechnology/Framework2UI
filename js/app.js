@@ -37,7 +37,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     controller: 'APICtrl'
   });
 
-  $urlRouterProvider.otherwise("/users");
+  $urlRouterProvider.otherwise("/projects");
 
 });
 
