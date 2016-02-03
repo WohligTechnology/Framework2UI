@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="firstapp">
 
-<head ng-controller="HeaderCtrl">
+  <head ng-controller="HeaderCtrl">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title ng-bind="'Framework 2 UI - '+template.title">Framework 2 UI</title>
 
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="img/favicon.ico"/>
 
-    <link rel="stylesheet" type="text" href="css/main.css" />
+    <link rel="stylesheet" type="text" href="css/main.css"/>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
 
@@ -42,18 +42,31 @@
     <script src="js/templateservice.js"></script>
 
     <script>
-      var isproduction=false;
-    </script>
-    <!--[if IE]>
-        <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-</head>
+      var isproduction = false;
 
-<body>
+      $(document).unbind('keydown').bind('keydown', function(event) {
+        var doPrevent = false;
+        if (event.keyCode === 8) {
+          var d = event.srcElement || event.target;
+          if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD' || d.type.toUpperCase() === 'FILE' || d.type.toUpperCase() === 'SEARCH' || d.type.toUpperCase() === 'EMAIL' || d.type.toUpperCase() === 'NUMBER' || d.type.toUpperCase() === 'DATE')) || d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+          } else {
+            doPrevent = true;
+          }
+        }
+
+        if (doPrevent) {
+          event.preventDefault();
+        }
+      });
+    </script>
+    <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
+  </head>
+
+  <body>
 
     <div class="repeated-item" ui-view></div>
 
-</body>
+  </body>
 
 </html>
