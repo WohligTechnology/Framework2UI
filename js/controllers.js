@@ -110,7 +110,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       url: ""
     });
   };
-
+  $scope.hide = 'hideme';
   NavigationService.findProjects({}, successCallback, errorCallback);
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
@@ -119,7 +119,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('APICtrl', function($scope, $mdDialog, $mdToast, TemplateService, NavigationService, $timeout, $stateParams) {
 
   var isSortable = false;
-
+  $scope.hideme = 'hide';
   $scope.isSearch = true;
   $scope.searchForm = {
     name: ""
