@@ -6,7 +6,7 @@ var firstapp = angular.module('firstapp', [
   'navigationservice'
 ]);
 
-firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+firstapp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
   // for http request with session
   $httpProvider.defaults.withCredentials = true;
@@ -42,16 +42,16 @@ firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 });
 
 
-firstapp.directive('img', function($compile, $parse) {
+firstapp.directive('img', function ($compile, $parse) {
   return {
     restrict: 'E',
     replace: false,
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       var $element = $(element);
       if (!attrs.noloading) {
         $element.after("<img src='img/loading.gif' class='loading' />");
         var $loading = $element.next(".loading");
-        $element.load(function() {
+        $element.load(function () {
           $loading.remove();
           $(this).addClass("doneLoading");
         });
@@ -64,11 +64,11 @@ firstapp.directive('img', function($compile, $parse) {
 
 var editorG = {};
 var jsonEditorNo = 0;
-firstapp.directive('jsoneditor', function($compile, $parse) {
+firstapp.directive('jsoneditor', function ($compile, $parse) {
   return {
     restrict: 'EA',
     scope: false,
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       $element = $(element);
       $element.css("min-height", "200px");
       var jsoneditornumber = (jsonEditorNo++);
@@ -83,13 +83,13 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
 
 
       editor.setValue($scope.api.Response[attrs.model], 1);
-      editor.on("change", function(e) {
+      editor.on("change", function (e) {
 
         $scope.api.Response[attrs.model] = editor.getValue();
         $scope.$apply();
       });
       var wrapMode = true;
-      setTimeout(function() {
+      setTimeout(function () {
         editor.getSession().setUseWrapMode(wrapMode);
       }, 100);
 
@@ -99,7 +99,7 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
           win: "Ctrl-Alt-B",
           mac: "Ctrl-Option-B"
         },
-        exec: function(editor) {
+        exec: function (editor) {
           var value = editor.getValue();
           var beautiVal = js_beautify(value);
           editor.setValue(beautiVal);
@@ -114,7 +114,7 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
           win: "Ctrl-Alt-S",
           mac: "Ctrl-Option-S"
         },
-        exec: function(editor) {
+        exec: function (editor) {
           wrapMode = !wrapMode;
           editor.getSession().setUseWrapMode(wrapMode);
 
@@ -124,15 +124,15 @@ firstapp.directive('jsoneditor', function($compile, $parse) {
   };
 });
 
-firstapp.directive('dlEnterKey', function() {
-  return function(scope, element, attrs) {
+firstapp.directive('dlEnterKey', function () {
+  return function (scope, element, attrs) {
 
-    element.bind("keydown keypress", function(event) {
+    element.bind("keydown keypress", function (event) {
       var keyCode = event.which || event.keyCode;
 
       // If enter key is pressed
       if (keyCode === 13) {
-        scope.$apply(function() {
+        scope.$apply(function () {
           // Evaluate the expression
           scope.$eval(attrs.dlEnterKey);
         });
